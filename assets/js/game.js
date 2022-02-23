@@ -225,6 +225,23 @@ var endGame = function() {
         window.alert("You have lost your robot in battle. Game Over!");
     }
 
+    //Check localStorage for high score. If it's not there use 0
+    var highScore = localStorage.getItem("highscore");
+    if (highScore === null) {
+        highScore = 0;
+    }
+
+    //If player has more money than previous high score, they have the new highscore
+    if (playerInfo.money > highScore) {
+        localStorage.setItem("highscore", playerInfo.money);
+        localStorage.setItem("name", playerInfo.name);
+
+        alert(playerInfo.name + " now has the high score of " + playerInfo.money + "!");
+    }
+    else {
+        alert(playerInfo.name + " did not beat the high score of " + highScore + ". Maybe next time!");
+    }
+
     //Ask the player if they want to play Again
     var playAgainConfirm = window.confirm("Would you like to play again?");
 
