@@ -108,11 +108,21 @@ var fightOrSkip = function() {
 
 // Create function named "fight"
 var fight = function(enemy) {
+    //Keep track of who goes first
+    var isPlayerTurn = true;
+
+    if (Math.random() > 0.5) {
+        isPlayerTurn = false;
+    }
+
     //Repeat as long as enemy robot is alive
     while (playerInfo.health > 0 && enemy.health > 0) {
-        if (fightOrSkip()) {
+        if (isPlayerTurn) {
+
+        
+            if (fightOrSkip()) {
             break;
-        }
+            }
         
         //Generate random damage value based on player's attack power
         var damage = randomNumber(playerInfo.attack -3, playerInfo.attack);
@@ -135,6 +145,8 @@ var fight = function(enemy) {
         else {
             window.alert(enemy.name + " still has " + enemy.health + " health left.");
         }
+    }
+    else {
         //Generate random number for enemy attack damage
         var damage = randomNumber(enemy.attack -3, enemy.attack);
   
@@ -152,8 +164,11 @@ var fight = function(enemy) {
         }
         else {
             window.alert(playerInfo.name + " still has " + playerInfo.health + " health left.");
-        };
-    };
+        }
+    }
+    //Flip turn order for next round
+    isPlayerTurn = !isPlayerTurn;
+}
 };
 
 //   else {
