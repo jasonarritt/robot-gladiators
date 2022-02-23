@@ -1,4 +1,3 @@
-window.alert("Welcome to Robot Gladiators!");
 
 
 // Function to prompt user to enter robot name
@@ -63,7 +62,7 @@ var fight = function(enemyName) {
 
         //Check Player's Health
         if (playerHealth <= 0) {
-             window.alert(playerName + " has died!");
+             window.alert(playerName + " has died! You have lost your robot in battle. Game Over!");
             //Exit loop if player robot dies
             break;
         }
@@ -87,9 +86,16 @@ var fight = function(enemyName) {
 
 // fight();
 
-for (var i = 0; i < enemyNames.length; i++) {
-    // debugger;
-    var pickedEnemyName = enemyNames[i];
-    enemyHealth = 50;
-    fight(pickedEnemyName);
-};
+if (playerHealth > 0) {
+    for (var i = 0; i < enemyNames.length; i++) {
+        //Welcome player to round
+         window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
+
+        //Pick a new enemy
+        var pickedEnemyName = enemyNames[i];
+        //Set enemy health
+        enemyHealth = 50;
+        //debugger
+        fight(pickedEnemyName);
+    };
+}
