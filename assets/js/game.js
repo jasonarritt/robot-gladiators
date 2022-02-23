@@ -8,9 +8,21 @@ var randomNumber = function(min, max) {
     return value;
 };
 
+var getPlayerName = function() {
+    var name = "";
+
+    //ADD LOOP HERE WITH PROMPT AND CONDITION
+    while (name === "" || name === "null") {
+        name = prompt("What is your robot's name?");
+    }
+
+    console.log("Your robot's name is " + name);
+    return name;
+}
+
 // Function to prompt user to enter robot name
 var playerInfo = {
-    name : window.prompt("What is your robot's name?"),
+    name : getPlayerName(),
     health : 100,
     attack : 10,
     money : 10,
@@ -153,7 +165,7 @@ var startGame = function() {
             var pickedEnemyObject = enemyInfo[i];
             //Set enemy health
             pickedEnemyObject.health = randomNumber(40, 60);
-            //debugger
+
             fight(pickedEnemyObject);
             if (playerInfo.health > 0 && i < enemyInfo.length - 1) {
                 var storeConfirm = window.confirm("Would you like to visit the store before the next round?");
